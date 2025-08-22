@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>洛谷P12134题解</title>
+    <link href="/2025/08/22/%E6%B4%9B%E8%B0%B7P12134%E9%A2%98%E8%A7%A3/"/>
+    <url>/2025/08/22/%E6%B4%9B%E8%B0%B7P12134%E9%A2%98%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>我们需要从 $N$ 幅画中挑选 $M$ 幅，按一定顺序排列，使得相邻画作艺术价值平方差的绝对值之和 $L$ 最小。其中 $L$ 的定义为：</p><p>$$L&#x3D;\sum_{i&#x3D;1}^{M-1} |B_{i+1}^2 - B_i^2|$$</p><p>目标是找到这个最小的 $L$ 值。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>观察 $L$ 的表达式，由于绝对值内是平方差，当我们将挑选的画作按平方值排序后，$B_{i+1}^2 \geq B_i^2$，此时 $|B_{i+1}^2 - B_i^2| &#x3D; B_{i+1}^2 - B_i^2$，$L$ 可简化为相邻元素平方差的总和。</p><p>排序后的平方值数组中，连续元素的差值总和最小。也就是说，从排序后的平方值数组中，找长度为 $M$ 的连续子数组，使相邻元素差值之和最小。</p><p>先计算第一个长度为 $M$ 的窗口的差值和，再通过滑动窗口更新（减去离开窗口的差值，加上进入窗口的新差值），找到最小值。</p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long<span class="hljs-comment">//一定要开 long long，虽然这么写不是那么优雅</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> s[<span class="hljs-number">100005</span>];<span class="hljs-comment">//平方数组</span><br><span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> n, m;<br>    cin &gt;&gt; n &gt;&gt; m;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>        <span class="hljs-type">int</span> a;<br>        cin &gt;&gt; a;<br>        s[i] = a * a;<span class="hljs-comment">//艺术价值的平方</span><br>    &#125;<br>    <span class="hljs-built_in">sort</span>(s, s + n);<br>    <span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m - <span class="hljs-number">1</span>; i++) &#123;<br>        ans += s[i + <span class="hljs-number">1</span>] - s[i];<br>    &#125;<br>    <span class="hljs-comment">//滑动窗口</span><br>    <span class="hljs-type">int</span> cur = ans;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n - m; i++) &#123;<br>        cur = cur - (s[i] - s[i - <span class="hljs-number">1</span>]) + (s[i + m - <span class="hljs-number">1</span>] - s[i + m - <span class="hljs-number">2</span>]);<br>        ans = <span class="hljs-built_in">min</span>(cur, ans);<br>    &#125;<br>    cout &lt;&lt; ans;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>蓝桥杯</tag>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>洛谷P13788题解</title>
     <link href="/2025/08/21/%E6%B4%9B%E8%B0%B7P13788%E9%A2%98%E8%A7%A3/"/>
     <url>/2025/08/21/%E6%B4%9B%E8%B0%B7P13788%E9%A2%98%E8%A7%A3/</url>
@@ -247,9 +274,9 @@
     
     <tags>
       
-      <tag>DP</tag>
-      
       <tag>蓝桥杯</tag>
+      
+      <tag>DP</tag>
       
     </tags>
     
