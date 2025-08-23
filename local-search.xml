@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>洛谷P12948题解</title>
+    <link href="/2025/08/23/%E6%B4%9B%E8%B0%B7P12948%E9%A2%98%E8%A7%A3/"/>
+    <url>/2025/08/23/%E6%B4%9B%E8%B0%B7P12948%E9%A2%98%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>这道题要求我们为一排彩色卡片分配数字，需要满足三个条件：</p><ol><li><p>数字从左到右是非递减的。</p></li><li><p>相同颜色的卡片必须有相同数字。</p></li><li><p>不同颜色的卡片必须有不同数字。</p></li></ol><p>最后需要按数字从小到大的顺序输出颜色。如果无法满足条件，则输出 <code>IMPOSSIBLE</code>。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>如果一种颜色出现了多次，那么这些出现的位置必须是连续的。否则，就不可能满足条件。</p><p>比如在 $[3,8,2,2,8]$ 中，数字 $8$ 出现了两次但不连续，中间隔着 $2$，这就导致无论如何分配数字都无法满足非递减的要求。</p><p>所以，我们解决这道题的步骤是：</p><ol><li><p>检查每种颜色的出现是否都是连续的。</p></li><li><p>如果有不连续的颜色，输出 <code>IMPOSSIBLE</code>。</p></li><li><p>如果所有颜色都连续出现，那么按它们第一次出现的顺序输出即可（因为这个顺序自然满足非递减要求）。</p></li></ol><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-type">int</span> s[<span class="hljs-number">100005</span>], vis[<span class="hljs-number">100005</span>];<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><span class="hljs-type">int</span> T;<br>cin &gt;&gt; T;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> c = <span class="hljs-number">1</span>; c &lt;= T; c++) &#123;<span class="hljs-comment">//输出行号</span><br>        <span class="hljs-type">int</span> n;<br>        <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;n);<br>        <span class="hljs-built_in">memset</span>(vis, <span class="hljs-number">0</span>, <span class="hljs-built_in">sizeof</span>(vis));<span class="hljs-comment">//每次都要清空</span><br>        <span class="hljs-type">bool</span> flag = <span class="hljs-number">1</span>;<span class="hljs-comment">//标记是否连续</span><br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>            <span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;s[i]);<br><span class="hljs-keyword">if</span> (!vis[s[i]]) vis[s[i]] = <span class="hljs-number">1</span>;<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (s[i - <span class="hljs-number">1</span>] != s[i]) flag = <span class="hljs-number">0</span>;<br>&#125;<br>        <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Case #%d: &quot;</span>, c);<br><span class="hljs-keyword">if</span> (!flag) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;IMPOSSIBLE\n&quot;</span>);<span class="hljs-comment">//如果标记被改为 0，表示不连续，即不符合条件</span><br><span class="hljs-keyword">else</span> &#123;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>;i &lt;= n; i++)&#123;<br><span class="hljs-keyword">if</span> (s[i] != s[i - <span class="hljs-number">1</span>]) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>, s[i]);<br>            &#125;<br>cout &lt;&lt; endl;<br>&#125;<br>&#125;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Google Code Jam</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>洛谷P12134题解</title>
     <link href="/2025/08/22/%E6%B4%9B%E8%B0%B7P12134%E9%A2%98%E8%A7%A3/"/>
     <url>/2025/08/22/%E6%B4%9B%E8%B0%B7P12134%E9%A2%98%E8%A7%A3/</url>
