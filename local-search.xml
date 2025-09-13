@@ -296,6 +296,12 @@
     <content type="html"><![CDATA[<p>本题考虑使用状压 DP。</p><p>设糖果口味总数为 $m$，使用二进制数 $s \in {0, 1}^m$ 表示口味集合，其中第 $k$ 位为 $1$ 当且仅当该集合包含第 $k$ 种口味。</p><p>定义状态 $f(s)$ 为覆盖口味集合 $s$ 所需的最小糖果包数。初始条件为：</p><ul><li><p>$f(\emptyset) &#x3D; 0$（空集不需要任何糖果包）</p></li><li><p>$f(s) &#x3D; +\infty$（对于所有非空集合 $s$）</p></li></ul><p>状态转移方程：</p><p>对于每包糖果的口味集合 $a_i$（$1 \leq i \leq n$），遍历所有可能的状态 $s$，更新：</p><p>$$<br>f(s \cup a_i) &#x3D; \min(f(s \cup a_i), f(s) + 1)<br>$$</p><p>可以得到如下代码：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-built_in">memset</span>(f, <span class="hljs-number">0x3f3f3f3f</span>, <span class="hljs-built_in">sizeof</span>(f));<br>f[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">0</span>; s &lt; <span class="hljs-number">1</span> &lt;&lt; m; s++) &#123;<br>        <span class="hljs-keyword">if</span> (f[s] &gt; <span class="hljs-number">105</span>) <span class="hljs-keyword">continue</span>;<br>        f[s | a[i]] = <span class="hljs-built_in">min</span>(f[s | a[i]], f[s] + <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure><p>完整代码就不给了，希望这篇题解对你有所帮助。</p>]]></content>
     
     
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
     
     <tags>
       
@@ -372,9 +378,9 @@
     
     <tags>
       
-      <tag>Google Code Jam</tag>
-      
       <tag>数学</tag>
+      
+      <tag>Google Code Jam</tag>
       
     </tags>
     
