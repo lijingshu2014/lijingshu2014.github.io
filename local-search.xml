@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>洛谷P11076题解</title>
+    <link href="/2025/09/26/%E6%B4%9B%E8%B0%B7P11076%E9%A2%98%E8%A7%A3/"/>
+    <url>/2025/09/26/%E6%B4%9B%E8%B0%B7P11076%E9%A2%98%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><p>已知小 F 需赢满 $x$ 场获胜，小 S 需赢满 $y$ 场获胜。已进行 $n$ 场比赛，求小 F 要最终获胜时，后续比赛中“最多连续胜场”的最小值。</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先统计已有胜场：遍历 $s$，求出小 F 已胜 $F$ 场，小 S 已胜 $S$ 场。</p><p>然后计算后续需求：</p><p>小 F 还需胜 $k &#x3D; x - F$ 场（$k \leq 0$ 时直接输出 $0$，无需再比）。</p><p>小 S 后续最多能胜 $r &#x3D; y-1 - S$ 场（再胜 $1$ 场就赢了，小 F 失败）。</p><h3 id="分类讨论"><a href="#分类讨论" class="headerlink" title="分类讨论"></a>分类讨论</h3><table><thead><tr><th>情况</th><th>逻辑</th><th>答案</th></tr></thead><tbody><tr><td>$r \leq 0$</td><td>小 S 不能再胜，小 F 需连胜所有 $k$ 场</td><td>$k$</td></tr><tr><td>$r &gt; 0$</td><td>小 S 的 $r$ 场胜利将小 F 的 $k$ 场分成 $g &#x3D; r+1$ 段，尽量平均分</td><td>$\lceil \frac{k}{g} \rceil$（即 $k%g&gt;0$ 时 $\frac{k}{g}+1$，否则 $\frac{k}{g}$）</td></tr></tbody></table><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> T;<br>    cin &gt;&gt; T;<br>    <span class="hljs-keyword">while</span> (T--) &#123;<br>        <span class="hljs-type">int</span> n, x, y;<br>        cin &gt;&gt; n &gt;&gt; x &gt;&gt; y;<br>        string s;<br>        cin &gt;&gt; s;<br>        <span class="hljs-type">int</span> F = <span class="hljs-number">0</span>, S = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (s[i] == <span class="hljs-string">&#x27;F&#x27;</span>) F++;<br>            <span class="hljs-keyword">else</span> S++;<br>        &#125;<br>        <span class="hljs-type">int</span> k = x - F;<br>        <span class="hljs-keyword">if</span> (k &lt;= <span class="hljs-number">0</span>) &#123;<br>            cout &lt;&lt; <span class="hljs-number">0</span> &lt;&lt; endl;<br>            <span class="hljs-keyword">continue</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> r = y - <span class="hljs-number">1</span> - S;<br>        <span class="hljs-keyword">if</span> (r &lt;= <span class="hljs-number">0</span>) &#123;<br>            cout &lt;&lt; k &lt;&lt; endl;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-type">int</span> g = r + <span class="hljs-number">1</span>;<br>            <span class="hljs-type">int</span> b = k / g;<br>            <span class="hljs-type">int</span> rem = k % g;<br>            cout &lt;&lt; (rem &gt; <span class="hljs-number">0</span> ? b + <span class="hljs-number">1</span> : b) &lt;&lt; endl;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>题解</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>数学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>洛谷P14027题解</title>
     <link href="/2025/09/13/%E6%B4%9B%E8%B0%B7P14027%E9%A2%98%E8%A7%A3/"/>
     <url>/2025/09/13/%E6%B4%9B%E8%B0%B7P14027%E9%A2%98%E8%A7%A3/</url>
