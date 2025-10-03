@@ -1,0 +1,22 @@
+#board {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+/* 毛玻璃 TOC 容器样式 */
+#toc {
+  /* 半透明背景 */
+  background-color: rgba(255, 255, 255, 0.7); /* 白色半透明，可调整透明度 */
+  /* 毛玻璃效果 */
+  backdrop-filter: blur(10px); /* 模糊程度，数值越大越模糊 */
+  -webkit-backdrop-filter: blur(10px); /* 兼容 Safari */
+  /* 可选：添加边框和阴影增强效果 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+  /* 确保内容不溢出 */
+  overflow: hidden;
+}
+
+/* 修复 TOC 内部链接 hover 样式（可选，避免冲突） */
+#toc a:hover {
+  background-color: rgba(255, 255, 255, 0.5); /* 与毛玻璃风格统一 */
+}
