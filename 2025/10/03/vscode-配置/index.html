@@ -49,7 +49,7 @@
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/wfjie62y.png">
 <meta property="og:image" content="https://cdn.luogu.com.cn/upload/image_hosting/0tb5yhvi.png">
 <meta property="article:published_time" content="2025-10-03T03:49:10.000Z">
-<meta property="article:modified_time" content="2025-10-03T03:49:35.503Z">
+<meta property="article:modified_time" content="2025-10-18T05:15:46.874Z">
 <meta property="article:author" content="lijingshu">
 <meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary_large_image">
@@ -96,15 +96,13 @@
 <link rel="stylesheet" href="/css/macpanel.css">
 <link rel="stylesheet" href="/css/scrollAnimation.css">
 <link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.min.css">
-<link rel="stylesheet" href="/css/gundongtiaocolor.css">
-<link rel="stylesheet" href="/css/linkunderline.css">
 
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"lijingshu2014.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"lijingshu2014.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -462,6 +460,8 @@
 <p>在 <code>&lt;/body&gt;</code> 和 <code>&lt;/html&gt;</code> 之间添加代码如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/x-mathjax-config&quot;</span>&gt;</span><span class="language-javascript"> <span class="hljs-title class_">MathJax</span>.<span class="hljs-property">Hub</span>.<span class="hljs-title class_">Config</span>(&#123; <span class="hljs-attr">tex2jax</span>: &#123;<span class="hljs-attr">inlineMath</span>: [[<span class="hljs-string">&#x27;$&#x27;</span>, <span class="hljs-string">&#x27;$&#x27;</span>]]&#125;, <span class="hljs-attr">messageStyle</span>: <span class="hljs-string">&quot;none&quot;</span> &#125;);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <p>然后你需要确保你的电脑中装有 Google Chrome 浏览器。</p>
+<p>再在刚刚打开的全局配置文件中添加：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;markdown-pdf.executablePath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-comment">//这是你 Chrome 内核的路径</span><br></code></pre></td></tr></table></figure>
 <p>导出为 PDF 方法：</p>
 <p>先创建好 Markdown 文件，然后右键找到并点击 MPE: 打开侧边预览，然后在预览里右键，找到 ExPort，选择 Chrome(Putpeteer) 里面的 PDF 然后就可以导出了。</p>
 <h3 id="推荐的主题">推荐的主题</h3>
