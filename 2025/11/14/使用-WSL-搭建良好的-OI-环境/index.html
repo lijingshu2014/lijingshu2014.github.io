@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" >
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="lijingshu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 WSL 搭建良好的 OI 环境">
+<meta property="og:url" content="https://lijingshu2014.github.io/2025/11/14/%E4%BD%BF%E7%94%A8-WSL-%E6%90%AD%E5%BB%BA%E8%89%AF%E5%A5%BD%E7%9A%84-OI-%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="lijingshu&#39;s blog">
+<meta property="og:description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-14T12:03:23.000Z">
+<meta property="article:modified_time" content="2025-11-14T12:06:03.245Z">
+<meta property="article:author" content="lijingshu">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="Windows">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>使用 WSL 搭建良好的 OI 环境 - lijingshu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/cloudedGlass.css">
+<link rel="stylesheet" href="/css/macpanel.css">
+<link rel="stylesheet" href="/css/scrollAnimation.css">
+<link rel="stylesheet" href="https://registry.npmmirror.com/lxgw-wenkai-screen-web/latest/files/style.min.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lijingshu2014.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":"❡"},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body><!-- hexo injector body_begin start --><div id="web_bg"></div><!-- hexo injector body_begin end -->
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong class="navbar-title">lijingshu&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-books"></i>
+                <span>文章</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/archives/" target="_self">
+                    <i class="iconfont icon-archive-fill"></i>
+                    <span>归档</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/" target="_self">
+                    <i class="iconfont icon-category-fill"></i>
+                    <span>分类</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用 WSL 搭建良好的 OI 环境"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-14 20:03" pubdate>
+          2025年11月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用 WSL 搭建良好的 OI 环境</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文将从以下几个方面介绍 WSL 的使用方法：</p>
+<ol>
+<li>安装 WSL。</li>
+<li>WSL 安装一些 OI 必要的依赖。</li>
+<li>在 WSL 配置 vim。</li>
+<li>运行 C++ 代码。</li>
+</ol>
+<h2 id="安装-WSL">安装 WSL</h2>
+<p>由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。</p>
+<p>以<strong>管理员身份</strong>打开 PowerShell，输入如下命令：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span><br></code></pre></td></tr></table></figure>
+<p>此时我们重启电脑，再次以<strong>管理员身份</strong>运行 PowerShell。</p>
+<p>WSL 可以安装多种不同的 Linux 发行版，我们可以通过如下命令列出可用的分发。</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--list</span> <span class="hljs-literal">--online</span><br></code></pre></td></tr></table></figure>
+<p>对于 OI 代码编写的话，我强烈推荐 Ubuntu 和 Ubuntu-24.04：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span> ubuntu<br></code></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span> ubuntu<span class="hljs-literal">-24</span>.<span class="hljs-number">04</span><br></code></pre></td></tr></table></figure>
+<p>此时已经完成了 WSL 的安装。</p>
+<h2 id="WSL-安装-OI-必要的依赖。">WSL 安装 OI 必要的依赖。</h2>
+<p>在开始菜单中打开 Ubuntu，系统会让我们创建一个用户名，这将作为用户文件夹的名字。然后我们需要设置一个密码，请牢记该密码，以后在使用 <code>sudo</code> 命令时需要输入该密码。然后我们就可以使用 WSL 了。</p>
+<p>运行一下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y <span class="hljs-comment"># 非常重要</span><br><span class="hljs-built_in">sudo</span> apt install -y build-essential gcc g++ make <span class="hljs-comment"># 安装 cpp 编译器</span><br><span class="hljs-built_in">sudo</span> apt install -y vim git curl <span class="hljs-comment"># 安装 vim</span><br><span class="hljs-built_in">sudo</span> apt install -y clang-format <span class="hljs-comment"># 用于格式化代码</span><br></code></pre></td></tr></table></figure>
+<p>现在你的 OI 必要依赖就安装好了。</p>
+<h2 id="在-WSL-配置-vim">在 WSL 配置 vim</h2>
+<p>运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.vimrc<br></code></pre></td></tr></table></figure>
+<p>会打开一堆东西，按一下 <code>i</code>，切换到插入模式。</p>
+<p>输入代码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-comment">&quot; 基础设置</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">number</span>          <span class="hljs-comment">&quot; 显示行号</span><br><span class="hljs-keyword">set</span> cursorline      <span class="hljs-comment">&quot; 高亮当前行</span><br><span class="hljs-keyword">set</span> tabstop=<span class="hljs-number">4</span>       <span class="hljs-comment">&quot; Tab 宽度为 4 空格</span><br><span class="hljs-keyword">set</span> <span class="hljs-built_in">shiftwidth</span>=<span class="hljs-number">4</span>    <span class="hljs-comment">&quot; 自动缩进宽度为 4 空格</span><br><span class="hljs-keyword">set</span> expandtab       <span class="hljs-comment">&quot; 将 Tab 转换为空格</span><br><span class="hljs-keyword">set</span> autoindent      <span class="hljs-comment">&quot; 自动缩进</span><br><span class="hljs-keyword">set</span> smartindent     <span class="hljs-comment">&quot; 智能缩进（适合 C/C++）</span><br><span class="hljs-keyword">set</span> encoding=utf-<span class="hljs-number">8</span>  <span class="hljs-comment">&quot; 编码支持</span><br><span class="hljs-keyword">set</span> mouse=<span class="hljs-keyword">a</span>         <span class="hljs-comment">&quot; 支持鼠标操作</span><br><span class="hljs-keyword">set</span> scrolloff=<span class="hljs-number">3</span>     <span class="hljs-comment">&quot; 光标上下保留 3 行距离</span><br><span class="hljs-keyword">set</span> wrap            <span class="hljs-comment">&quot; 自动换行（避免长代码超出屏幕）</span><br><span class="hljs-keyword">set</span> backupcopy=yes  <span class="hljs-comment">&quot; 保存时保留原文件权限</span><br><span class="hljs-keyword">set</span> nobackup        <span class="hljs-comment">&quot; 禁用备份文件（避免生成 .swp 等干扰）</span><br><span class="hljs-keyword">set</span> nowritebackup<br><span class="hljs-keyword">set</span> noswapfile<br><br><span class="hljs-comment">&quot; C++ 语法高亮与缩进优化</span><br><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">setlocal</span> <span class="hljs-built_in">cindent</span><br><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">setlocal</span> <span class="hljs-built_in">shiftwidth</span>=<span class="hljs-number">4</span><br><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">setlocal</span> tabstop=<span class="hljs-number">4</span><br><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">setlocal</span> expandtab<br><br><span class="hljs-comment">&quot; 编译与运行快捷键（F5 编译运行，F6 仅编译）</span><br><span class="hljs-keyword">autocmd</span> FileType cpp <span class="hljs-keyword">nnoremap</span> <span class="hljs-symbol">&lt;F5&gt;</span> :<span class="hljs-keyword">w</span><span class="hljs-symbol">&lt;CR&gt;</span>:!g++ % -std=<span class="hljs-keyword">c</span>++<span class="hljs-number">14</span> -O2 -<span class="hljs-keyword">o</span> %&lt; &amp;&amp; ./%&lt; <span class="hljs-symbol">&lt;CR&gt;</span><br><span class="hljs-keyword">autocmd</span> FileType cpp <span class="hljs-keyword">nnoremap</span> <span class="hljs-symbol">&lt;F6&gt;</span> :<span class="hljs-keyword">w</span><span class="hljs-symbol">&lt;CR&gt;</span>:!g++ % -std=<span class="hljs-keyword">c</span>++<span class="hljs-number">14</span> -O2 -<span class="hljs-keyword">o</span> %&lt; <span class="hljs-symbol">&lt;CR&gt;</span><br><br><span class="hljs-comment">&quot; 代码格式化快捷键（F4，基于 .clang-format）</span><br><span class="hljs-keyword">autocmd</span> FileType <span class="hljs-keyword">c</span>,cpp <span class="hljs-keyword">nnoremap</span> <span class="hljs-symbol">&lt;F4&gt;</span> :%!clang-format<span class="hljs-symbol">&lt;CR&gt;</span><br><br><span class="hljs-comment">&quot; 快速注释/取消注释（Ctrl+/）</span><br><span class="hljs-keyword">nmap</span> &lt;C-/&gt; :s/^/\/\//<span class="hljs-symbol">&lt;CR&gt;</span>:<span class="hljs-keyword">noh</span><span class="hljs-symbol">&lt;CR&gt;</span><br><span class="hljs-keyword">vmap</span> &lt;C-/&gt; :s/^/\/\//<span class="hljs-symbol">&lt;CR&gt;</span>:<span class="hljs-keyword">noh</span><span class="hljs-symbol">&lt;CR&gt;</span><br><span class="hljs-keyword">nmap</span> &lt;C-\&gt; :s/^\/\///<span class="hljs-symbol">&lt;CR&gt;</span>:<span class="hljs-keyword">noh</span><span class="hljs-symbol">&lt;CR&gt;</span><br><span class="hljs-keyword">vmap</span> &lt;C-\&gt; :s/^\/\///<span class="hljs-symbol">&lt;CR&gt;</span>:<span class="hljs-keyword">noh</span><span class="hljs-symbol">&lt;CR&gt;</span><br></code></pre></td></tr></table></figure>
+<p>这里定义了一些快捷键：</p>
+<ul>
+<li><code>F5</code>：编译运行。</li>
+<li><code>F6</code>：仅编译。</li>
+<li><code>F4</code>：格式化代码。</li>
+<li><code>Ctrl+/</code>：快速注释/取消注释。</li>
+</ul>
+<p>然后按下 <code>Esc</code>，输入 <code>:wq</code>，表示保存并关闭。</p>
+<p>然后输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.clang-format<br></code></pre></td></tr></table></figure>
+<p>同样，将代码粘进去，这是我的码风，大家可自行更改：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br></pre></td><td class="code"><pre><code class="hljs vim">---<br># 语言: None, Cpp, Java, JavaScript, ObjC, Proto, TableGen, TextProto<br>Language:        Cpp<br>BasedOnStyle:  WebKit<br># 访问说明符(public、private等)的偏移<br>AccessModifierOffset: -<span class="hljs-number">4</span><br># 开括号(开圆括号、开尖括号、开方括号)后的对齐: Align, DontAlign, AlwaysBreak(总是在开括号后换行)<br>AlignAfterOpenBracket: Align<br># 对齐数组列<br>AlignArrayOfStructures: None<br># 连续赋值时，对齐所有等号<br>AlignConsecutiveAssignments: None<br># 对齐连续位字段<br>AlignConsecutiveBitFields: None<br># 连续声明时，对齐所有声明的变量名<br>AlignConsecutiveDeclarations: None<br># 对齐连续宏定义<br>AlignConsecutiveMacros: AcrossComments<br># 逃脱换行(使用反斜杠换行)的反斜杠<br>AlignEscapedNewlines: Left<br># 操作数对齐方式<br>AlignOperands:   Align<br># 尾随的注释对齐<br>AlignTrailingComments: true<br># 允许函数参数在一行<br>AllowAllArgumentsOnNextLine: true<br># 允许函数声明的所有参数在放在一行<br>AllowAllParametersOfDeclarationOnNextLine: true<br># 允许短的块放在同一行<br>AllowShortBlocksOnASingleLine: true<br># 允许短的case标签放在同一行<br>AllowShortCaseLabelsOnASingleLine: true<br># 允许短的枚举放在同一行<br>AllowShortEnumsOnASingleLine: true<br># 允许短的函数放在同一行<br>AllowShortFunctionsOnASingleLine: Empty<br># 允许短的<span class="hljs-keyword">if</span>语句保持在同一行<br>AllowShortIfStatementsOnASingleLine: false<br># 允许短的匿名函数lamda表达式放在同一行<br>AllowShortLambdasOnASingleLine: Empty<br># 允许短的循环<span class="hljs-keyword">while</span>保持在同一行<br>AllowShortLoopsOnASingleLine: false<br># 总是在返回类型后换行<br>AlwaysBreakAfterReturnType: None<br># 总是在多行<span class="hljs-built_in">string</span>字面量前换行<br>AlwaysBreakBeforeMultilineStrings: false<br># 总是在template声明后换行<br>AlwaysBreakTemplateDeclarations: MultiLine<br># 宏属性<br>AttributeMacros: [<span class="hljs-string">&#x27;__capability&#x27;</span>, <span class="hljs-string">&#x27;__output&#x27;</span>, <span class="hljs-string">&#x27;__ununsed&#x27;</span>]<br># 表示函数实参要么都在同一行，要么都各自一行<br>BinPackArguments: true<br># false表示所有形参要么都在同一行，要么都各自一行<br>BinPackParameters: true<br># 位域冒号对齐方式<br>BitFieldColonSpacing : Both<br># 大括号换行，只有当BreakBeforeBraces设置为Custom时才有效，设置其他配置则下面不生效<br>BraceWrapping :<br>  # class定义后面<br>  AfterClass: false<br>  # 控制语句后面<br>  AfterControlStatement:  false<br>  # enum定义后面<br>  AfterEnum:  false<br>  # 函数定义后面<br>  AfterFunction:  false<br>  # 命名空间定义后面<br>  AfterNamespace: false<br>  # ObjC定义后面<br>  AfterObjCDeclaration: false<br>  # struct定义后面<br>  AfterStruct:  false<br>  # union定义后面<br>  AfterUnion: false<br>  # <span class="hljs-keyword">catch</span>之前<br>  BeforeCatch:  false<br>  # <span class="hljs-keyword">else</span>之前<br>  BeforeElse: false<br>  # 缩进大括号<br>  IndentBraces: false<br>  # unknown:<br>  AfterCaseLabel:  false<br>  AfterExternBlock: false<br>  BeforeLambdaBody: false<br>  BeforeWhile: false<br>  SplitEmptyFunction: false<br>  SplitEmptyRecord: false<br>  SplitEmptyNamespace: false<br># 在java字段的注释后换行<br>BreakAfterJavaFieldAnnotations: false<br># 在二元运算符前换行<br>BreakBeforeBinaryOperators: None<br># 在大括号前换行<br>BreakBeforeBraces: Custom<br># 在concept前换行<br># BreakBeforeConceptDeclarations: Never<br># 在三元运算符前换行<br>BreakBeforeTernaryOperators: true<br># 构造函数初始值设定项换行样式<br>BreakConstructorInitializers: BeforeColon<br># 继承列表样式<br>BreakInheritanceList: AfterColon<br># 字符串换行样式<br>BreakStringLiterals: false<br># 每行字符的限制，<span class="hljs-number">0</span>表示没有限制<br>ColumnLimit:     <span class="hljs-number">80</span><br># 描述具有特殊意义的注释的正则表达式，它不应该被分割为多行或以其它方式改变<br>CommentPragmas:  <span class="hljs-string">&#x27;^ IWYU pragma:&#x27;</span><br># 在新行上声明每个命名空间<br>CompactNamespaces: false<br># 构造函数的初始化列表的缩进宽度<br>ConstructorInitializerIndentWidth: <span class="hljs-number">4</span><br># 延续的行的缩进宽度<br>ContinuationIndentWidth: <span class="hljs-number">4</span><br># 去除C++<span class="hljs-number">11</span>的列表初始化的大括号&#123;后和&#125;前的空格<br>Cpp11BracedListStyle: true<br># 继承最常用的换行方式<br>DeriveLineEnding: true<br># 继承最常用的指针和引用的对齐方式<br>DerivePointerAlignment: false<br># 关闭格式化<br>DisableFormat:   false<br># 删除访问修饰符后的所有空行<br>EmptyLineAfterAccessModifier: Never<br># 仅当访问修饰符开始一个新的逻辑块时才添加空行<br>EmptyLineBeforeAccessModifier: Never<br># 自动检测函数的调用和定义是否被格式为每行一个参数(Experimental)<br>ExperimentalAutoDetectBinPacking: false<br># 自动补充namespace注释<br>FixNamespaceComments: false<br># 需要被解读为foreach循环而不是函数调用的宏<br>ForEachMacros: [<span class="hljs-string">&#x27;RANGES_FOR&#x27;</span>, <span class="hljs-string">&#x27;FOREACH&#x27;</span>]<br>IfMacros: [<span class="hljs-string">&#x27;IF&#x27;</span>]<br># 多个#include块合并在一起并排序为一个<br>IncludeBlocks:   Merge<br># 可以定义负数优先级从而保证某些#include永远在最前面<br>IncludeCategories:<br>  - Regex:           <span class="hljs-string">&#x27;^&quot;(llvm|llvm-c|clang|clang-c)/&#x27;</span><br>    Priority:        <span class="hljs-number">2</span><br>    SortPriority:    <span class="hljs-number">0</span><br>    CaseSensitive:   false<br>  - Regex:           <span class="hljs-string">&#x27;^(&lt;|&quot;(gtest|gmock|isl|json)/)&#x27;</span><br>    Priority:        <span class="hljs-number">3</span><br>    SortPriority:    <span class="hljs-number">0</span><br>    CaseSensitive:   false<br>  - Regex:           <span class="hljs-string">&#x27;.*&#x27;</span><br>    Priority:        <span class="hljs-number">1</span><br>    SortPriority:    <span class="hljs-number">0</span><br>    CaseSensitive:   false<br>IncludeIsMainRegex: <span class="hljs-string">&#x27;(Test)?$&#x27;</span><br>IncludeIsMainSourceRegex: <span class="hljs-string">&#x27;&#x27;</span><br># 缩进访问修饰符<br>IndentAccessModifiers: false<br># 缩进case标签<br>IndentCaseLabels: false<br># case 标签后面的块使用与 case 标签相同的缩进级别<br>IndentCaseBlocks: false<br># 向后兼容缩进外部块<br>IndentExternBlock: AfterExternBlock<br># 缩进<span class="hljs-keyword">goto</span>标签。<br>IndentGotoLabels: false<br># 缩进预处理器指令<br>IndentPPDirectives: BeforeHash<br># 缩进模板中的requires子句<br>IndentRequires:  false<br># 缩进宽度<br>IndentWidth: <span class="hljs-number">4</span><br># 函数返回类型换行时，缩进函数声明或函数定义的函数名<br>IndentWrappedFunctionNames: false<br>#InsertBraces: true<br># 插入尾随逗号<br>InsertTrailingCommas: None<br># 保留JavaScript字符串引号<br>JavaScriptQuotes: Leave<br># 包装 JavaScript 导入/导出语句<br>JavaScriptWrapImports: true<br># 保留在块开始处的空行<br>KeepEmptyLinesAtTheStartOfBlocks: false<br># 相对于 lambda 签名对齐 lambda 主体<br>LambdaBodyIndentation: Signature<br># 开始一个块的宏的正则表达式<br>MacroBlockBegin: <span class="hljs-string">&#x27;&#x27;</span><br># 结束一个块的宏的正则表达式<br>MacroBlockEnd:   <span class="hljs-string">&#x27;&#x27;</span><br># 连续空行的最大数量<br>MaxEmptyLinesToKeep: <span class="hljs-number">1</span><br># 命名空间的缩进<br>NamespaceIndentation: All<br>ObjCBinPackProtocolList: Auto<br># 使用ObjC块时缩进宽度<br>ObjCBlockIndentWidth: <span class="hljs-number">4</span><br>ObjCBreakBeforeNestedBlockParam: true<br># 在ObjC的@property后添加一个空格<br>ObjCSpaceAfterProperty: false<br># 在ObjC的protocol列表前添加一个空格<br>ObjCSpaceBeforeProtocolList: true<br># 缩进预处理器语句的列数<br>PPIndentWidth:   -<span class="hljs-number">1</span><br>PenaltyBreakAssignment: <span class="hljs-number">2</span><br>PenaltyBreakBeforeFirstCallParameter: <span class="hljs-number">19</span><br>PenaltyBreakComment: <span class="hljs-number">300</span><br>PenaltyBreakFirstLessLess: <span class="hljs-number">120</span><br>PenaltyBreakString: <span class="hljs-number">1000</span><br>PenaltyBreakTemplateDeclaration: <span class="hljs-number">10</span><br>PenaltyExcessCharacter: <span class="hljs-number">1000000</span><br>PenaltyReturnTypeOnItsOwnLine: <span class="hljs-number">60</span><br>PenaltyIndentedWhitespace: <span class="hljs-number">0</span><br># 指针的对齐: Left, Right, Middle<br>PointerAlignment: Right<br># 引用的对齐<br>ReferenceAlignment: Pointer<br># 允许重新排版注释<br>ReflowComments:  true<br>#RemoveBracesLLVM: false<br># 短命名空间跨越的最大展开行数<br>ShortNamespaceLines: <span class="hljs-number">1</span><br># 允许排序#include<br>SortIncludes:    CaseSensitive<br># java静态导入放在非静态导入之前<br>SortJavaStaticImport: Before<br># 对using声明排序<br>SortUsingDeclarations: true<br># 在C风格类型转换后添加空格<br>SpaceAfterCStyleCast: false<br># 在!后添加空格<br>SpaceAfterLogicalNot: false<br># 在Template关键字后添加空格<br>SpaceAfterTemplateKeyword: true<br># 不要确保指针限定符周围有空格<br>SpaceAroundPointerQualifiers: Default<br># 在赋值运算符之前添加空格<br>SpaceBeforeAssignmentOperators: true<br># 不在case冒号之前添加空格<br>SpaceBeforeCaseColon: false<br># 不在C++<span class="hljs-number">11</span>大括号列表之前添加空格<br>SpaceBeforeCpp11BracedList: false<br># 在构造函数初始化器冒号之前添加空格<br>SpaceBeforeCtorInitializerColon: true<br># 在继承冒号前添加空格<br>SpaceBeforeInheritanceColon: true<br># 开圆括号之前添加一个空格<br>SpaceBeforeParens: ControlStatements<br># 在基于范围的<span class="hljs-keyword">for</span>循环冒号之前添加空格<br>SpaceBeforeRangeBasedForLoopColon: true<br># 中括号前空格<br>SpaceBeforeSquareBrackets: false<br># &#123;&#125;中间空格<br>SpaceInEmptyBlock: false<br># 在空的圆括号中添加空格<br>SpaceInEmptyParentheses: false<br># 在尾随的评论前添加的空格数(只适用于//)<br>SpacesBeforeTrailingComments: <span class="hljs-number">2</span><br># 在尖括号的&lt;后和&gt;前添加空格<br>SpacesInAngles:  true<br># 在C风格类型转换的括号中添加空格<br>SpacesInCStyleCastParentheses: false<br># 不在<span class="hljs-keyword">if</span>/<span class="hljs-keyword">for</span>/switch/<span class="hljs-keyword">while</span>条件周围插入空格<br>SpacesInConditionalStatement: false<br># 在容器(ObjC和JavaScript的数组和字典等)字面量中添加空格<br>SpacesInContainerLiterals: true<br># 行注释开头允许有多少个空格。要禁用最大值，请将其设置为-<span class="hljs-number">1</span>，除此之外，最大值优先于最小值<br>SpacesInLineCommentPrefix:<br>  Minimum:         <span class="hljs-number">1</span><br>  Maximum:         -<span class="hljs-number">1</span><br># 在圆括号的(后和)前添加空格<br>SpacesInParentheses: false<br># 在方括号的[后和]前添加空格，lamda表达式和未指明大小的数组的声明不受影响<br>SpacesInSquareBrackets: false<br># 标准<br>Standard:        Auto<br># 在语句前面被忽略的宏定义，就好像它们是一个属性一样<br>StatementAttributeLikeMacros:<br>  - Q_EMIT<br># 应该被解释为完整语句的宏定义<br>StatementMacros:<br>  - Q_UNUSED<br>  - QT_REQUIRE_VERSION<br># <span class="hljs-keyword">tab</span>宽度<br>TabWidth:        <span class="hljs-number">4</span><br># 使用\r\n换行替代\n<br>UseCRLF:         false<br># 使用<span class="hljs-keyword">tab</span>字符：ForIndentation——仅将制表符用于缩进<br>UseTab:          Never<br># 对空格敏感的宏定义<br>WhitespaceSensitiveMacros:<br>  - STRINGIZE<br>  - PP_STRINGIZE<br>  - BOOST_PP_STRINGIZE<br>  - NS_SWIFT_NAME<br>  - CF_SWIFT_NAME<br>...<br></code></pre></td></tr></table></figure>
+<p>保存并关闭，至此，你已经完成了 vim 的配置。</p>
+<h2 id="运行-C-代码">运行 C++ 代码</h2>
+<p>你可以新建一个文件夹，运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">mkdir</span> -p Code &amp;&amp; <span class="hljs-built_in">cd</span> Code<br></code></pre></td></tr></table></figure>
+<p>这样你就新建并进入到了一个名为 Code 的文件夹，新建 test.cpp 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim test.cpp<br></code></pre></td></tr></table></figure>
+<p>输入一段没有格式化的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> a,b;<br>cin&gt;&gt;a&gt;&gt;b;<br>cout&lt;&lt;a+b&lt;&lt;<span class="hljs-string">&quot;Hello World!&quot;</span>&lt;&lt;endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后按下 <code>F4</code> 就会得到一段格式化好的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> a, b;<br>    cin &gt;&gt; a &gt;&gt; b;<br>    cout &lt;&lt; a + b &lt;&lt; endl &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<p>按下 <code>F5</code>，就会编译并运行。</p>
+<p>至此你就学会了用 vim 编译运行 C++ 代码。</p>
+<h2 id="参考内容">参考内容</h2>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/zu2hqcj9">WSL：Windows 与 Linux 的无缝对接</a>——@<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/747900">NOI-Winner</a>。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%A7%91%E6%8A%80%C2%B7%E5%B7%A5%E7%A8%8B/" class="category-chain-item">科技·工程</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Linux/" class="print-no-link">#Linux</a>
+      
+        <a href="/tags/Windows/" class="print-no-link">#Windows</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>使用 WSL 搭建良好的 OI 环境</div>
+      <div>https://lijingshu2014.github.io/2025/11/14/使用-WSL-搭建良好的-OI-环境/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>lijingshu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/01/%E3%80%90%E5%B7%A5%E7%A8%8B%E3%80%91luogu-tester-for-VSCode/" title="【工程】luogu-tester for VSCode">
+                        <span class="hidden-mobile">【工程】luogu-tester for VSCode</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"lijingshu2014/Giscus-demo","repo-id":"R_kgDOO3HAPw","category":"Announcements","category-id":"DIC_kwDOO3HAP84CrG1V","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/fireworks.js"></script>
+<script src="/js/scrollAnimation.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<!-- hexo injector body_end start --><script src="/js/backgroundize.js"></script><!-- hexo injector body_end end --></body>
+</html>
