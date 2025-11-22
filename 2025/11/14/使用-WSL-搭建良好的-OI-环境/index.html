@@ -19,15 +19,15 @@
   <meta name="author" content="lijingshu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
+    <meta name="description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被限制的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 WSL 搭建良好的 OI 环境">
 <meta property="og:url" content="https://lijingshu2014.github.io/2025/11/14/%E4%BD%BF%E7%94%A8-WSL-%E6%90%AD%E5%BB%BA%E8%89%AF%E5%A5%BD%E7%9A%84-OI-%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="lijingshu&#39;s blog">
-<meta property="og:description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
+<meta property="og:description" content="本文将从以下几个方面介绍 WSL 的使用方法：  安装 WSL。 WSL 安装一些 OI 必要的依赖。 在 WSL 配置 vim。 运行 C++ 代码。  安装 WSL 由于家庭版有很多功能是被限制的，所以是家庭版的就尽快换系统。 以管理员身份打开 PowerShell，输入如下命令： 1wsl --install 此时我们重启电脑，再次以管理员身份运行 PowerShell。 WSL 可以安装多">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-14T12:03:23.000Z">
-<meta property="article:modified_time" content="2025-11-14T12:06:03.245Z">
+<meta property="article:modified_time" content="2025-11-15T08:53:25.456Z">
 <meta property="article:author" content="lijingshu">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="Windows">
@@ -302,13 +302,13 @@
 <li>运行 C++ 代码。</li>
 </ol>
 <h2 id="安装-WSL">安装 WSL</h2>
-<p>由于家庭版有很多功能是被阉割的，所以是家庭版的就尽快换系统。</p>
+<p>由于家庭版有很多功能是被限制的，所以是家庭版的就尽快换系统。</p>
 <p>以<strong>管理员身份</strong>打开 PowerShell，输入如下命令：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span><br></code></pre></td></tr></table></figure>
 <p>此时我们重启电脑，再次以<strong>管理员身份</strong>运行 PowerShell。</p>
 <p>WSL 可以安装多种不同的 Linux 发行版，我们可以通过如下命令列出可用的分发。</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--list</span> <span class="hljs-literal">--online</span><br></code></pre></td></tr></table></figure>
-<p>对于 OI 代码编写的话，我强烈推荐 Ubuntu 和 Ubuntu-24.04：</p>
+<p>对于 OI 代码编写的话，我强烈推荐 Ubuntu 或者是 Ubuntu-24.04：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span> ubuntu<br></code></pre></td></tr></table></figure>
 <p>或者：</p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">wsl <span class="hljs-literal">--install</span> ubuntu<span class="hljs-literal">-24</span>.<span class="hljs-number">04</span><br></code></pre></td></tr></table></figure>
@@ -316,7 +316,7 @@
 <h2 id="WSL-安装-OI-必要的依赖。">WSL 安装 OI 必要的依赖。</h2>
 <p>在开始菜单中打开 Ubuntu，系统会让我们创建一个用户名，这将作为用户文件夹的名字。然后我们需要设置一个密码，请牢记该密码，以后在使用 <code>sudo</code> 命令时需要输入该密码。然后我们就可以使用 WSL 了。</p>
 <p>运行一下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y <span class="hljs-comment"># 非常重要</span><br><span class="hljs-built_in">sudo</span> apt install -y build-essential gcc g++ make <span class="hljs-comment"># 安装 cpp 编译器</span><br><span class="hljs-built_in">sudo</span> apt install -y vim git curl <span class="hljs-comment"># 安装 vim</span><br><span class="hljs-built_in">sudo</span> apt install -y clang-format <span class="hljs-comment"># 用于格式化代码</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt update &amp;&amp; <span class="hljs-built_in">sudo</span> apt upgrade -y <span class="hljs-comment"># 非常重要</span><br><span class="hljs-built_in">sudo</span> apt install -y build-essential gcc g++ make <span class="hljs-comment"># 安装 cpp 编译器</span><br><span class="hljs-built_in">sudo</span> apt install -y vim git curl <span class="hljs-comment"># 安装 vim 等工具</span><br><span class="hljs-built_in">sudo</span> apt install -y clang-format <span class="hljs-comment"># 用于格式化代码</span><br></code></pre></td></tr></table></figure>
 <p>现在你的 OI 必要依赖就安装好了。</p>
 <h2 id="在-WSL-配置-vim">在 WSL 配置 vim</h2>
 <p>运行命令：</p>
@@ -345,11 +345,11 @@
 <p>输入一段没有格式化的代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br><span class="hljs-type">int</span> a,b;<br>cin&gt;&gt;a&gt;&gt;b;<br>cout&lt;&lt;a+b&lt;&lt;<span class="hljs-string">&quot;Hello World!&quot;</span>&lt;&lt;endl;<br><span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>然后按下 <code>F4</code> 就会得到一段格式化好的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> a, b;<br>    cin &gt;&gt; a &gt;&gt; b;<br>    cout &lt;&lt; a + b &lt;&lt; endl &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-type">int</span> a, b;<br>    cin &gt;&gt; a &gt;&gt; b;<br>    cout &lt;&lt; a + b &lt;&lt; endl &lt;&lt; <span class="hljs-string">&quot;Hello World!&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 <p>按下 <code>F5</code>，就会编译并运行。</p>
 <p>至此你就学会了用 vim 编译运行 C++ 代码。</p>
 <h2 id="参考内容">参考内容</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/zu2hqcj9">WSL：Windows 与 Linux 的无缝对接</a>——@<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/747900">NOI-Winner</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/zu2hqcj9">WSL：Windows 与 Linux 的无缝对接</a>——@<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/user/747900">NOI_Winner</a>。</p>
 
                 
               </div>
