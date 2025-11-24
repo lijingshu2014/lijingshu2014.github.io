@@ -27,7 +27,7 @@
 <meta property="og:description" content="配置 vscode 先参照教程配置好 vscode：https:&#x2F;&#x2F;www.luogu.com.cn&#x2F;article&#x2F;qu4nmsxo。 安装插件 由于懒得注册微软账号，所以没办法发布在 vscode 的扩展市场里，只能在 GitHub Releases 安装。 特性  支持 C++ 语言（编译选项：-std&#x3D;c++14 -O2）。 动态时间限制：评测时自动使用 Competitive Compa">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-11-01T03:55:51.000Z">
-<meta property="article:modified_time" content="2025-11-22T14:38:20.266Z">
+<meta property="article:modified_time" content="2025-11-24T06:21:27.522Z">
 <meta property="article:author" content="lijingshu">
 <meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary_large_image">
@@ -302,12 +302,15 @@
 <li>支持 C++ 语言（编译选项：<code>-std=c++14 -O2</code>）。</li>
 <li>动态时间限制：评测时自动使用 Competitive Companion 爬取的题目时间限制。</li>
 <li>按题号分离样例：测试用例将按题号存储在独立的文件夹中（<code>testcases/{题号}/</code>）。</li>
-<li>完整的评测结果分类：<br>
-  - ✅ AC (Accepted)：答案正确（显示执行时间）。<br>
-  - ❌ CE (Compilation Error)：编译错误（显示详细错误信息）。<br>
-  - ⏱️ TLE (Time Limit Exceeded)：时间超限（显示实际限制和耗时）。<br>
-  - 💥 RE (Runtime Error)：运行时错误（显示信号类型或退出码）。<br>
-  - ❌ WA (Wrong Answer)：答案错误（对比期望/实际输出）。</li>
+<li>完整的评测结果分类：
+<ul>
+<li>✅ AC (Accepted)：答案正确（显示执行时间）。</li>
+<li>❌ CE (Compilation Error)：编译错误（显示详细错误信息）。</li>
+<li>⏱️ TLE (Time Limit Exceeded)：时间超限（显示实际限制和耗时）。</li>
+<li>💥 RE (Runtime Error)：运行时错误（显示信号类型或退出码）。</li>
+<li>❌ WA (Wrong Answer)：答案错误（对比期望/实际输出）。</li>
+</ul>
+</li>
 <li>自动清理编译生成的可执行文件。</li>
 <li>输出对比忽略行尾空格和空行差异，减少误判。</li>
 </ul>
