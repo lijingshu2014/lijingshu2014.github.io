@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>PowerShell 安装 oh-my-posh</title>
+    <link href="/2025/12/20/PowerShell-%E5%AE%89%E8%A3%85-oh-my-posh/"/>
+    <url>/2025/12/20/PowerShell-%E5%AE%89%E8%A3%85-oh-my-posh/</url>
+    
+    <content type="html"><![CDATA[<h2 id="字体安装">字体安装</h2><p>安装 Nerd font 字体：<a href="https://www.nerdfonts.com/font-downloads">https://www.nerdfonts.com/font-downloads</a>。</p><p>将压缩包下下来之后解压，安装里面的所有字体。</p><p>然后在 Windows Terminal 中设置字体，打开 Windows PowerShell，参照下图更改字体。</p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/moitnzbs.png" alt=""></p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/uahijq8t.png" alt=""></p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/umr4117k.png" alt=""></p><h2 id="安装-PowerShellGet">安装 PowerShellGet</h2><p>以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Install-Module</span> <span class="hljs-literal">-Name</span> PowerShellGet <span class="hljs-literal">-Force</span><br></code></pre></td></tr></table></figure><h2 id="安装-oh-my-posh">安装 oh-my-posh</h2><p>以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">winget install JanDeDobbeleer.OhMyPosh <span class="hljs-literal">-s</span> winget<br></code></pre></td></tr></table></figure><h2 id="安装-posh-git">安装 posh-git</h2><p>以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">PowerShellGet\<span class="hljs-built_in">Install-Module</span> posh<span class="hljs-literal">-git</span> <span class="hljs-literal">-Scope</span> CurrentUser <span class="hljs-literal">-Force</span><br></code></pre></td></tr></table></figure><h2 id="安装-PSReadLine">安装 PSReadLine</h2><p>以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Install-Module</span> PSReadLine <span class="hljs-literal">-Force</span><br></code></pre></td></tr></table></figure><h2 id="编辑-oh-my-posh-配置文件">编辑 oh-my-posh 配置文件</h2><p>以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$localThemePath</span> = <span class="hljs-string">&quot;C:\Users\admin\.oh-my-posh\themes&quot;</span><br><br><span class="hljs-built_in">New-Item</span> <span class="hljs-literal">-Path</span> <span class="hljs-variable">$localThemePath</span> <span class="hljs-literal">-ItemType</span> Directory <span class="hljs-literal">-Force</span><br><br><span class="hljs-built_in">Invoke-WebRequest</span> <span class="hljs-literal">-Uri</span> <span class="hljs-string">&quot;https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/jandedobbeleer.omp.json&quot;</span> <span class="hljs-literal">-OutFile</span> (<span class="hljs-built_in">Join-Path</span> <span class="hljs-variable">$localThemePath</span> <span class="hljs-string">&quot;jandedobbeleer.omp.json&quot;</span>)<br><br><span class="hljs-built_in">Test-Path</span> (<span class="hljs-built_in">Join-Path</span> <span class="hljs-variable">$localThemePath</span> <span class="hljs-string">&quot;jandedobbeleer.omp.json&quot;</span>) <span class="hljs-comment"># 返回 True 即成功</span><br></code></pre></td></tr></table></figure><p>然后输入：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">notepad <span class="hljs-variable">$PROFILE</span><br></code></pre></td></tr></table></figure><p>会打开一个文件，在文件中写入：</p><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nix">$localThemePath <span class="hljs-operator">=</span> <span class="hljs-string">&quot;C:<span class="hljs-char escape_">\U</span>sers<span class="hljs-char escape_">\a</span>dmin<span class="hljs-char escape_">\.</span>oh-my-posh<span class="hljs-char escape_">\t</span>hemes&quot;</span><br>oh-my-posh init pwsh <span class="hljs-operator">-</span>-config <span class="hljs-string">&quot;$localThemePath/jandedobbeleer.omp.json&quot;</span> | Invoke-Expression<br></code></pre></td></tr></table></figure><p>再以系统管理员权限打开 PowerShell 终端，执行以下命令：</p><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-built_in">Set-PSReadLineKeyHandler</span> <span class="hljs-literal">-Key</span> Tab <span class="hljs-literal">-Function</span> MenuComplete<br><br><span class="hljs-built_in">Set-PSReadlineKeyHandler</span> <span class="hljs-literal">-Key</span> UpArrow <span class="hljs-literal">-Function</span> HistorySearchBackward<br><br><span class="hljs-built_in">Set-PSReadlineKeyHandler</span> <span class="hljs-literal">-Key</span> DownArrow <span class="hljs-literal">-Function</span> HistorySearchForward<br><br><span class="hljs-built_in">Import-Module</span> posh<span class="hljs-literal">-git</span><br></code></pre></td></tr></table></figure><p>保存修改，重新打开一个新的 PowerShell 终端，将会看到以下效果：</p><p><img src="https://cdn.luogu.com.cn/upload/image_hosting/8lhcmpfq.png" alt=""></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>科技·工程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>PowerShell</tag>
+      
+      <tag>oh-my-posh</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>使用 WSL 搭建良好的 OI 环境</title>
     <link href="/2025/11/14/%E4%BD%BF%E7%94%A8-WSL-%E6%90%AD%E5%BB%BA%E8%89%AF%E5%A5%BD%E7%9A%84-OI-%E7%8E%AF%E5%A2%83/"/>
     <url>/2025/11/14/%E4%BD%BF%E7%94%A8-WSL-%E6%90%AD%E5%BB%BA%E8%89%AF%E5%A5%BD%E7%9A%84-OI-%E7%8E%AF%E5%A2%83/</url>
@@ -274,9 +301,9 @@
     
     <tags>
       
-      <tag>DP</tag>
-      
       <tag>蓝桥杯</tag>
+      
+      <tag>DP</tag>
       
     </tags>
     
@@ -499,9 +526,9 @@
     
     <tags>
       
-      <tag>DP</tag>
-      
       <tag>蓝桥杯</tag>
+      
+      <tag>DP</tag>
       
     </tags>
     
